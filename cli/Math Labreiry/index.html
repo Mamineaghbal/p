@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Library Program</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Title Screen -->
+        <div id="title-screen" class="title-screen">
+            <div class="title">Math Library Program</div>
+            <div class="start-btn" id="start-btn">Start</div>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="main-menu" class="main-menu">
+            <div class="category-grid">
+                <div class="category-btn" data-category="calculus">Calculus</div>
+                <div class="category-btn" data-category="algebra">Algebra</div>
+                <div class="category-btn" data-category="probability">Probability</div>
+                <div class="category-btn" data-category="topology">Topology</div>
+            </div>
+            <div class="return-btn" id="return-to-title">Return</div>
+        </div>
+
+        <!-- Calculus Submenu -->
+        <div id="calculus-submenu" class="submenu">
+            <div class="submenu-title">Calculus Topics</div>
+            <div class="topic-list">
+                <div class="topic-item" data-topic="sequence-and-functions">
+                    <div class="topic-number">1</div>
+                    <div>Sequence and Functions</div>
+                </div>
+                <div class="topic-item" data-topic="integration">
+                    <div class="topic-number">2</div>
+                    <div>Integration</div>
+                </div>
+                <div class="topic-item" data-topic="taylor-series">
+                    <div class="topic-number">3</div>
+                    <div>Taylor Series</div>
+                </div>
+                <div class="topic-item" data-topic="series-of-functions">
+                    <div class="topic-number">4</div>
+                    <div>Series and Series of Function</div>
+                </div>
+                <div class="topic-item" data-topic="multivariable-function">
+                    <div class="topic-number">5</div>
+                    <div>Multivariable Function</div>
+                </div>
+            </div>
+            <div class="return-btn" id="return-to-main-calculus">Return</div>
+        </div>
+
+        <!-- Algebra Submenu -->
+        <div id="algebra-submenu" class="submenu">
+            <div class="submenu-title">Algebra Topics</div>
+            <div class="topic-list">
+                <div class="topic-item" data-topic="logic-sets">
+                    <div class="topic-number">1</div>
+                    <div>Logic and Sets Theory</div>
+                </div>
+                <div class="topic-item" data-topic="algebraic-structure">
+                    <div class="topic-number">2</div>
+                    <div>Algebraic Structure</div>
+                </div>
+                <div class="topic-item" data-topic="vector-matrices">
+                    <div class="topic-number">3</div>
+                    <div>Vectorial Space and Matrices</div>
+                </div>
+            </div>
+            <div class="return-btn" id="return-to-main-algebra">Return</div>
+        </div>
+
+        <!-- Probability Submenu -->
+        <div id="probability-submenu" class="submenu">
+            <div class="submenu-title">Probability Topics</div>
+            <div class="topic-list">
+                <div class="topic-item" data-topic="statistics-variables">
+                    <div class="topic-number">1</div>
+                    <div>Statistics and Aleatory Variables</div>
+                </div>
+            </div>
+            <div class="return-btn" id="return-to-main-probability">Return</div>
+        </div>
+
+        <!-- Topology Submenu -->
+        <div id="topology-submenu" class="submenu">
+            <div class="submenu-title">Topology Topics</div>
+            <div class="topic-list">
+                <div class="topic-item" data-topic="introduction-topology">
+                    <div class="topic-number">1</div>
+                    <div>Introduction to Topology</div>
+                </div>
+            </div>
+            <div class="return-btn" id="return-to-main-topology">Return</div>
+        </div>
+
+        <!-- Content Pages -->
+        <div id="content-pages">
+            <!-- Calculus Content -->
+            <div id="sequence-and-functions" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Sequence and Functions</div>
+                </div>
+                <div class="content-body">
+                    <p>A sequence is an ordered list of numbers following a specific pattern or rule. In calculus, sequences are fundamental for understanding limits and convergence.</p>
+                    <p>A function is a relation that uniquely associates members of one set with members of another set. Functions are the building blocks of calculus.</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Convergence and divergence of sequences</p>
+                    <p>- Limits of functions</p>
+                    <p>- Continuity and differentiability</p>
+                    <p>- Intermediate Value Theorem</p>
+                </div>
+                <div class="back-btn" data-back="calculus">Back</div>
+            </div>
+
+            <div id="integration" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Integration</div>
+                </div>
+                <div class="content-body">
+                    <p>Integration is one of the two main operations of calculus, with its inverse operation being differentiation. The definite integral represents the area under a curve.</p>
+                    <p>Integration techniques include substitution, integration by parts, partial fractions, and trigonometric substitution.</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Fundamental Theorem of Calculus</p>
+                    <p>- Riemann sums and definite integrals</p>
+                    <p>- Applications: area, volume, arc length</p>
+                    <p>- Improper integrals</p>
+                </div>
+                <div class="back-btn" data-back="calculus">Back</div>
+            </div>
+
+            <div id="taylor-series" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Taylor Series</div>
+                </div>
+                <div class="content-body">
+                    <p>A Taylor series is a representation of a function as an infinite sum of terms calculated from the values of its derivatives at a single point.</p>
+                    <p>The Taylor series of a real or complex-valued function f(x) that is infinitely differentiable at a real or complex number a is the power series:</p>
+                    <p>f(a) + f'(a)(x-a)/1! + f''(a)(x-a)²/2! + ...</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Maclaurin series (Taylor series centered at 0)</p>
+                    <p>- Radius and interval of convergence</p>
+                    <p>- Applications in approximations and physics</p>
+                    <p>- Analytic functions</p>
+                </div>
+                <div class="back-btn" data-back="calculus">Back</div>
+            </div>
+
+            <div id="series-of-functions" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Series and Series of Function</div>
+                </div>
+                <div class="content-body">
+                    <p>A series is the sum of the terms of an infinite sequence. Series of functions involve summing functions rather than numbers.</p>
+                    <p>Important types include power series, Fourier series, and Laurent series. Convergence of series of functions is more complex than numerical series.</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Pointwise and uniform convergence</p>
+                    <p>- Weierstrass M-test</p>
+                    <p>- Term-by-term differentiation and integration</p>
+                    <p>- Power series representation</p>
+                </div>
+                <div class="back-btn" data-back="calculus">Back</div>
+            </div>
+
+            <div id="multivariable-function" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Multivariable Function</div>
+                </div>
+                <div class="content-body">
+                    <p>Multivariable calculus extends calculus to functions of multiple variables. It includes partial derivatives, multiple integrals, and vector calculus.</p>
+                    <p>Applications include optimization, physics, engineering, and economics where multiple variables interact.</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Partial derivatives and gradients</p>
+                    <p>- Multiple integrals (double, triple)</p>
+                    <p>- Vector fields and line integrals</p>
+                    <p>- Green's, Stokes', and Divergence theorems</p>
+                </div>
+                <div class="back-btn" data-back="calculus">Back</div>
+            </div>
+
+            <!-- Algebra Content -->
+            <div id="logic-sets" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Logic and Sets Theory</div>
+                </div>
+                <div class="content-body">
+                    <p>Mathematical logic is the study of formal logic within mathematics. Set theory is the branch of mathematical logic that studies sets.</p>
+                    <p>Sets are collections of objects, and set theory provides a foundation for nearly all of mathematics.</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Propositional and predicate logic</p>
+                    <p>- Set operations: union, intersection, complement</p>
+                    <p>- Relations and functions</p>
+                    <p>- Cardinality and countability</p>
+                </div>
+                <div class="back-btn" data-back="algebra">Back</div>
+            </div>
+
+            <div id="algebraic-structure" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Algebraic Structure</div>
+                </div>
+                <div class="content-body">
+                    <p>An algebraic structure consists of a nonempty set with one or more operations defined on it that satisfy certain axioms.</p>
+                    <p>Common structures include groups, rings, fields, and vector spaces.</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Groups: closure, associativity, identity, inverse</p>
+                    <p>- Rings and fields</p>
+                    <p>- Homomorphisms and isomorphisms</p>
+                    <p>- Lattices and Boolean algebras</p>
+                </div>
+                <div class="back-btn" data-back="algebra">Back</div>
+            </div>
+
+            <div id="vector-matrices" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Vectorial Space and Matrices</div>
+                </div>
+                <div class="content-body">
+                    <p>A vector space is a set of vectors that can be added together and multiplied by scalars. Matrices are rectangular arrays of numbers used to represent linear transformations.</p>
+                    <p>Linear algebra is fundamental to many areas of mathematics and its applications.</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Basis and dimension</p>
+                    <p>- Linear transformations and matrices</p>
+                    <p>- Eigenvalues and eigenvectors</p>
+                    <p>- Orthogonality and projections</p>
+                </div>
+                <div class="back-btn" data-back="algebra">Back</div>
+            </div>
+
+            <!-- Probability Content -->
+            <div id="statistics-variables" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Statistics and Aleatory Variables</div>
+                </div>
+                <div class="content-body">
+                    <p>Statistics involves collecting, analyzing, interpreting, and presenting data. Aleatory (random) variables represent numerical outcomes of random phenomena.</p>
+                    <p>Probability theory provides the mathematical foundation for statistics.</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Probability distributions (discrete and continuous)</p>
+                    <p>- Expected value and variance</p>
+                    <p>- Central Limit Theorem</p>
+                    <p>- Hypothesis testing and confidence intervals</p>
+                </div>
+                <div class="back-btn" data-back="probability">Back</div>
+            </div>
+
+            <!-- Topology Content -->
+            <div id="introduction-topology" class="content-page">
+                <div class="content-header">
+                    <div class="content-title">Introduction to Topology</div>
+                </div>
+                <div class="content-body">
+                    <p>Topology is concerned with the properties of a geometric object that are preserved under continuous deformations, such as stretching, twisting, and bending.</p>
+                    <p>It provides a framework for understanding continuity, connectedness, and compactness.</p>
+                    <hr>
+                    <p><strong>Key Concepts:</strong></p>
+                    <p>- Topological spaces and open sets</p>
+                    <p>- Continuity in topological spaces</p>
+                    <p>- Connectedness and path-connectedness</p>
+                    <p>- Compactness and Hausdorff spaces</p>
+                </div>
+                <div class="back-btn" data-back="topology">Back</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+

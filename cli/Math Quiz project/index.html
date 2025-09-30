@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Difficulty Selection Page -->
+        <div id="difficulty-page">
+            <div class="logo">
+                <div class="logo-box">Math Quiz</div>
+            </div>
+            <div class="difficulty-section">
+                <div class="difficulty-title">Choose difficulty:</div>
+                <div class="difficulty-buttons">
+                    <div class="difficulty-btn easy" data-difficulty="easy">Easy</div>
+                    <div class="difficulty-btn normal" data-difficulty="normal">Normal</div>
+                    <div class="difficulty-btn hard" data-difficulty="hard">Hard</div>
+                </div>
+            </div>
+            <div class="question-count">
+                <div class="question-count-label">How many questions to give to user:</div>
+                <div class="question-count-options">
+                    <div class="count-btn" data-count="10">10</div>
+                    <div class="count-btn" data-count="20">20</div>
+                    <div class="count-btn" data-count="30">30</div>
+                    <div class="count-btn" data-count="40">40</div>
+                    <div class="count-btn" data-count="50">50</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Page -->
+        <div id="quiz-page" class="quiz-container">
+            <div class="quiz-header">
+                <div class="timer">Timer: <span id="timer">00:00</span> s</div>
+                <div class="quiz-number">Quiz no. <span id="current-question">1</span></div>
+                <div class="score">Score: <span id="score">0</span> / <span id="total-questions">20</span></div>
+            </div>
+            <button class="exit-btn" id="exit-btn">Exit to Menu</button>
+            <div class="question-container">
+                <div class="question-text" id="question-text">Question will appear here...</div>
+                <div class="options-container" id="options-container">
+                    <!-- Options will be generated here -->
+                </div>
+                <button class="next-btn" id="next-btn">>> Next</button>
+            </div>
+        </div>
+
+        <!-- Results Page -->
+        <div id="results-page" class="results-container">
+            <div class="results-title">Results:</div>
+            <div class="results-box">
+                <div class="result-item">Difficulty: <span id="result-difficulty">...</span></div>
+                <div class="result-item">Time: <span id="result-time">00:00</span></div>
+                <div class="result-item">Grade: <span id="result-grade">S</span></div>
+                <div class="result-item">Description: <span id="result-description">Excellent</span></div>
+                <div class="result-item">Final Score: <span id="final-score">0</span>/<span id="final-total">0</span></div>
+            </div>
+            <button class="restart-btn" id="restart-btn">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
