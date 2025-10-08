@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RPG Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Main Menu -->
+  <div id="mainMenu" class="screen active">
+    <div class="main-menu">
+      <h1>RPG Game</h1>
+      <button class="btn" id="startBtn">Start</button>
+    </div>
+  </div>
+
+  <!-- Class Selection -->
+  <div id="classSelect" class="screen">
+    <div class="back-btn" id="backToMain">Back</div>
+    <h2>Choose a Class</h2>
+    <div class="class-btn" data-class="warrior">
+      <div class="class-icon">⚔️</div>
+      <div class="class-info">
+        <div class="class-name">Warrior</div>
+        <div class="class-level">Lv.1</div>
+      </div>
+    </div>
+    <div class="class-btn" data-class="archer">
+      <div class="class-icon">🏹</div>
+      <div class="class-info">
+        <div class="class-name">Archer</div>
+        <div class="class-level">Lv.1</div>
+      </div>
+    </div>
+    <div class="class-btn" data-class="mage">
+      <div class="class-icon">🧙</div>
+      <div class="class-info">
+        <div class="class-name">Mage</div>
+        <div class="class-level">Lv.1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage Map -->
+<div id="stageMap" class="screen">
+  <div class="back-btn" id="backToClass">Back</div>
+  <div class="stage-map">
+    <h2>Stages</h2>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="map-grid">
+      <div class="stage-node stage-available" data-stage="1">1</div>
+      <div class="stage-node stage-locked" data-stage="2">2</div>
+      <div class="stage-node stage-locked" data-stage="3">3</div>
+      <div class="stage-node stage-locked" data-stage="4">4</div>
+      <div class="stage-node stage-locked" data-stage="5">5</div>
+      <div class="stage-node stage-locked" data-stage="6">6</div>
+      <div class="stage-node stage-locked" data-stage="7">7</div>
+      <div class="stage-node stage-locked" data-stage="8">8</div>
+      <div class="stage-node stage-locked" data-stage="9">9</div>
+      <div class="stage-node stage-locked" data-stage="10">10</div>
+      <div class="stage-node stage-boss stage-locked" data-stage="11">11</div>
+      <div class="stage-node stage-boss stage-locked" data-stage="12">12</div>
+    </div>
+  </div>
+</div>
+
+  <!-- Battle Screen -->
+  <div id="battleScreen" class="screen">
+    <div class="back-btn" id="backToMap">Back</div>
+    <div class="battle-header">
+      <div class="battle-title" id="battleTitle">Stage: --</div>
+    </div>
+
+    <div class="character-stats">
+      <!-- Player -->
+      <div class="stat-block">
+        <div class="stat-label">You</div>
+        <div>HP: <span id="playerHP">--</span>/<span id="playerMaxHP">--</span></div>
+        <div class="bar-container">
+          <div class="bar hp-bar" id="playerHPBar"></div>
+        </div>
+        <div>MP: <span id="playerMP">--</span>/<span id="playerMaxMP">--</span></div>
+        <div class="bar-container">
+          <div class="bar mp-bar" id="playerMPBar"></div>
+        </div>
+      </div>
+      <!-- Enemy -->
+      <div class="stat-block">
+        <div class="stat-label">Enemy</div>
+        <div>HP: <span id="enemyHP">--</span>/<span id="enemyMaxHP">--</span></div>
+        <div class="bar-container">
+          <div class="bar hp-bar" id="enemyHPBar"></div>
+        </div>
+        <div>MP: <span id="enemyMP">--</span>/<span id="enemyMaxMP">--</span></div>
+        <div class="bar-container">
+          <div class="bar mp-bar" id="enemyMPBar"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="choices-box">
+      <h3>Choices</h3>
+      <button class="choice-btn" id="attackChoice">Attack</button>
+      <button class="choice-btn" id="skillChoice">Use Skill</button>
+      <button class="choice-btn" id="defendChoice">Defend</button>
+    </div>
+
+    <div class="log" id="battleLog">
+      <div class="info">Battle started!</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
