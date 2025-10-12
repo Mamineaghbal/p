@@ -1,0 +1,224 @@
+* {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 20px;
+    }
+    .screen {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #16213e;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 100, 255, 0.3);
+  display: none;
+  position: relative; /* ✅ ADD THIS HERE */
+}
+    .active { display: block; }
+
+    /* Main Menu */
+    .main-menu {
+      text-align: center;
+      padding: 40px;
+    }
+    .main-menu h1 {
+      font-size: 2.5em;
+      color: #f72585;
+      margin-bottom: 30px;
+    }
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background: #4cc9f0;
+      color: #0f3460;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #38b6ff; }
+
+    /* Class Selection */
+    .class-select h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #f72585;
+    }
+    .class-btn {
+      display: flex;
+      align-items: center;
+      background: #0f3460;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .class-btn:hover { background: #0c2d52; }
+    .class-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+    }
+    .class-info {
+      flex: 1;
+      text-align: left;
+    }
+    .class-name { font-weight: bold; }
+    .class-level { font-size: 0.9em; color: #aaa; }
+
+    .back-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 15px;
+      background: #7209b7;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Stage Map */
+    .stage-map {
+      text-align: center;
+      padding: 20px;
+    }
+    .stage-map h2 {
+      margin-bottom: 20px;
+      color: #f72585;
+    }
+    .progress-bar {
+      background: #333;
+      height: 20px;
+      border-radius: 10px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #4cc9f0;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    .map-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* ✅ 4 columns for 12 stages */
+  gap: 15px;
+  margin-top: 20px;
+}
+    .stage-node {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .stage-node:hover { transform: scale(1.1); }
+    .stage-locked { background: #555; color: #aaa; cursor: not-allowed; }
+    .stage-available { background: #aaffaa; color: #000; }
+    .stage-completed {
+  background: #ffaa00;
+  color: #000;
+  cursor: pointer;
+}
+.stage-completed:hover {
+  transform: scale(1.1);
+}
+    .stage-boss { background: #ff5555; color: white; }
+
+    /* Battle Screen */
+    .battle-screen {
+      padding: 20px;
+    }
+    .battle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .battle-title {
+      font-size: 1.5em;
+      color: #f72585;
+    }
+    .choices-box {
+      background: #0f3460;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .choices-box h3 { margin-bottom: 10px; }
+    .choice-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      background: #4cc9f0;
+      color: #0f3460;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .choice-btn:hover { background: #38b6ff; }
+
+    .character-stats {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+    .stat-block {
+      background: #0c1a33;
+      padding: 10px;
+      border-radius: 5px;
+      width: 48%;
+    }
+    .stat-label { font-weight: bold; }
+    .bar-container {
+      background: #333;
+      height: 15px;
+      border-radius: 7px;
+      margin: 5px 0;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      border-radius: 7px;
+      transition: width 0.4s ease;
+    }
+    .hp-bar { background: #ff4757; }
+    .mp-bar { background: #2ed573; }
+
+    .log {
+      background: #0c1a33;
+      padding: 15px;
+      border-radius: 8px;
+      height: 120px;
+      overflow-y: auto;
+      margin-top: 20px;
+      font-size: 0.95em;
+    }
+    .log div {
+      margin: 4px 0;
+      padding: 2px 0;
+    }
+    .damage { color: #ff6b6b; }
+    .heal { color: #2ed573; }
+    .info { color: #4cc9f0; }
+    .defeated { color: #ff9ff3; }
+
+    .hidden { display: none; }
+
+
+    
