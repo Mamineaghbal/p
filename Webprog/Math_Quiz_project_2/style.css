@@ -1,0 +1,225 @@
+/* style.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #102a43, #1e3a5f);
+  color: #f0f4f8;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.screen {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Main Title */
+h1 {
+  text-align: center;
+  font-size: 2.6rem;
+  margin-bottom: 30px;
+  color: #60a5fa;
+  text-shadow: 0 0 12px rgba(96, 165, 250, 0.6);
+  letter-spacing: 1px;
+}
+
+h2, h3 {
+  color: #93c5fd;
+  margin-bottom: 20px;
+}
+
+/* Branch Grid - Main Menu */
+.branches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.branch-btn {
+  background: linear-gradient(to right, #1e40af, #3b82f6);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.branch-btn:hover {
+  background: linear-gradient(to right, #1d4ed8, #60a5fa);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* General Buttons */
+.btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn:hover {
+  background: #60a5fa;
+  transform: scale(1.03);
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0 20px;
+  flex-wrap: wrap;
+}
+
+.btn.easy { background: #10b981; }
+.btn.easy:hover { background: #34d399; }
+
+.btn.hard { background: #ef4444; }
+.btn.hard:hover { background: #f87171; }
+
+.btn.normal { background: #f59e0b; }
+.btn.normal:hover { background: #fbbf24; }
+
+.btn.start {
+  background: linear-gradient(to right, #10b981, #34d399);
+  padding: 14px 32px;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 250px;
+  font-weight: 600;
+}
+
+.btn.start:hover {
+  background: linear-gradient(to right, #059669, #10b981);
+  transform: scale(1.02);
+}
+
+/* Quiz Screen */
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+#exit-quiz {
+  background: #dc2626;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+}
+
+#exit-quiz:hover {
+  background: #ef4444;
+}
+
+.question-box {
+  background: rgba(30, 41, 59, 0.6);
+  padding: 22px;
+  border-radius: 12px;
+  margin: 20px 0;
+  border-left: 4px solid #3b82f6;
+}
+
+#question-text {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.answers-grid {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.answer-btn {
+  background: #1e293b;
+  color: #e2e8f0;
+  text-align: left;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  transition: all 0.2s;
+}
+
+.answer-btn:hover:not(:disabled) {
+  background: #334155;
+  color: white;
+}
+
+.answer-btn.correct {
+  background: #065f46;
+  color: #bbf7d0;
+  border-color: #10b981;
+}
+
+.answer-btn.wrong {
+  background: #7f1d1d;
+  color: #fecaca;
+  border-color: #ef4444;
+}
+
+#next-question {
+  background: #8b5cf6;
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#next-question:hover {
+  background: #a78bfa;
+}
+
+/* Results */
+#results-performance {
+  font-weight: bold;
+  color: #34d399;
+}
+
+#results-performance.needs-work {
+  color: #f87171;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .branches-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+  }
+}

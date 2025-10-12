@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Math Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="main-menu" class="screen">
+    <h1>Math Quiz</h1>
+    <div class="branches-grid">
+      <button class="branch-btn" data-branch="foundations">Foundations & logic</button>
+      <button class="branch-btn" data-branch="algebra">Algebra</button>
+      <button class="branch-btn" data-branch="number-focused">Number-focused</button>
+      <button class="branch-btn" data-branch="geometry">Geometry & topology</button>
+      <button class="branch-btn" data-branch="analysis">Analysis</button>
+      <button class="branch-btn" data-branch="equations">Equations & dynamics</button>
+      <button class="branch-btn" data-branch="discrete">Discrete math & combinatorics</button>
+      <button class="branch-btn" data-branch="probability">Probability, statistics & info</button>
+      <button class="branch-btn" data-branch="numerical">Numerical & computational</button>
+    </div>
+  </div>
+
+  <div id="branch-screen" class="screen hidden">
+    <button id="return-main" class="btn">← Back</button>
+    <h2 id="branch-title">Branch</h2>
+    <div class="sub-branches-container"></div>
+  </div>
+
+  <div id="module-settings" class="screen hidden">
+    <button id="return-branch" class="btn">← Back</button>
+    <h2 id="module-title">Module</h2>
+    <p>Difficulty:</p>
+    <div class="btn-group">
+      <button class="btn easy" data-difficulty="easy">Easy</button>
+      <button class="btn normal" data-difficulty="normal">Normal</button>
+      <button class="btn hard" data-difficulty="hard">Hard</button>
+    </div>
+    <p>Questions:</p>
+    <div class="btn-group">
+      <button class="btn count" data-count="10">10</button>
+      <button class="btn count" data-count="20">20</button>
+      <button class="btn count" data-count="30">30</button>
+    </div>
+    <button id="start-quiz" class="btn start">Start Quiz</button>
+  </div>
+
+  <div id="quiz-screen" class="screen hidden">
+    <div class="quiz-header">
+      <span id="timer">00:00</span>
+      <span id="score">0/10</span>
+      <button id="exit-quiz" class="btn small">Exit</button>
+    </div>
+    <h3 id="module-header">Module</h3>
+    <div class="question-box">
+      <p id="question-text">Loading...</p>
+      <div class="answers-grid"></div>
+    </div>
+    <button id="next-question" class="btn">Next →</button>
+  </div>
+
+  <div id="results-screen" class="screen hidden">
+    <h2>Results</h2>
+    <p><strong>Module:</strong> <span id="results-module">—</span></p>
+    <p><strong>Score:</strong> <span id="results-score">0/10</span></p>
+    <p><strong>Time:</strong> <span id="results-time">00:00</span></p>
+    <p><strong>Performance:</strong> <span id="results-performance">—</span></p>
+    <button id="restart-btn" class="btn">Restart</button>
+  </div>
+
+  <script src="branch.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
