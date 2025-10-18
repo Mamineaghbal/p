@@ -1,0 +1,61 @@
+/* Theme Colors - Notes App */
+
+:root {
+    /* Base Colors */
+    --color-bg-base: #F8EEC7;
+    --color-bg-panel: #FFD89D;
+    --color-border-main: #F89B4D;
+    
+    /* Accent Colors */
+    --color-orange: #F89B4D;
+    --color-green: #43A047;
+    --color-red: #E53935;
+    --color-blue: #2196F3;
+    --color-gray: #9E9E9E;
+    
+    /* Text Colors */
+    --color-text-primary: #2E2E2E;
+    --color-text-secondary: #666666;
+    --color-text-light: #FFFFFF;
+    
+    /* Category Colors */
+    --color-cat-math: #4CAF50;
+    --color-cat-ideas: #2196F3;
+    --color-cat-other: #9E9E9E;
+    
+    /* Button Colors */
+    --color-btn-save: #43A047;
+    --color-btn-save-hover: #357a38;
+    --color-btn-exit: #E53935;
+    --color-btn-exit-hover: #c62828;
+    --color-btn-delete: #E53935;
+    --color-btn-delete-hover: #c62828;
+    --color-btn-new: #F89B4D;
+    --color-btn-new-hover: #e67e22;
+    --color-btn-search: #2196F3;
+    --color-btn-search-hover: #1976d2;
+    --color-btn-undo: #757575;
+    --color-btn-undo-hover: #616161;
+    
+    /* UI Elements */
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    --color-shadow-hover: rgba(0, 0, 0, 0.2);
+    --color-modal-overlay: rgba(0, 0, 0, 0.5);
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}

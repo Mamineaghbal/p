@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Notes App - Start{% endblock %}
+
+{% block content %}
+<div class="start-screen fade-in">
+    <div class="start-panel">
+        <div class="app-logo">
+            <h1>Notes App</h1>
+        </div>
+        <a href="{{ url_for('notes.list_notes') }}" class="btn btn-start">Start</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Categories{% endblock %}
+
+{% block content %}
+<div class="categories-screen fade-in">
+    <div class="categories-panel">
+        <!-- Header -->
+        <div class="categories-header">
+            <h2>Categories:</h2>
+            <div class="header-buttons">
+                <a href="{{ url_for('ui.start') }}" class="btn btn-home">🏠 Home</a>
+                <a href="{{ url_for('notes.list_notes') }}" class="btn btn-return">Return</a>
+            </div>
+        </div>
+
+        <!-- Categories List -->
+        <div class="categories-list">
+            {% for category in categories %}
+            <div class="category-item" style="border-left: 4px solid {{ category.color }};">
+                <div class="category-info">
+                    <span class="category-name">{{ category.name }}</span>
+                    <span class="category-count">{{ category.notes|length }} notes</span>
+                </div>
+                {% if category.name != 'All' %}
+                <div class="category-actions">
+                    <button class="btn-icon btn-edit" onclick="editCategory({{ category.id }}, '{{ category.name }}', '{{ category.color }}')" title="Edit">✏️</button>
+                    <button class="btn-icon btn-delete-cat" onclick="deleteCategory({{ category.id }}, '{{ category.name }}')" title="Delete">🗑️</button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Scroll Arrows (if needed for long lists) -->
+        <div class="scroll-controls">
+            <button class="btn btn-scroll" onclick="scrollUp()">▲</button>
+            <button class="btn btn-scroll" onclick="scrollDown()">▼</button>
+        </div>
+
+        <!-- New Category Button -->
+        <div class="categories-actions">
+            <button class="btn btn-new-category" onclick="showNewCategoryForm()">New Category</button>
+        </div>
+    </div>
+</div>
+
+<!-- New Category Modal -->
+<div id="newCategoryModal" class="modal">
+    <div class="modal-content">
+        <h3>Create New Category</h3>
+        <form method="POST" action="{{ url_for('categories.new_category') }}">
+            <div class="form-group">
+                <label for="name">Category Name:</label>
+                <input type="text" id="name" name="name" required class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="color" id="color" name="color" value="#F89B4D" class="form-input">
+            </div>
+            <div class="modal-actions">
+                <button type="submit" class="btn btn-yes">Create</button>
+                <button type="button" class="btn btn-no" onclick="closeNewCategoryModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Category Modal -->
+<div id="editCategoryModal" class="modal">
+    <div class="modal-content">
+        <h3>Edit Category</h3>
+        <form method="POST" action="{{ url_for('categories.edit_category') }}">
+            <input type="hidden" id="edit_category_id" name="category_id">
+            <div class="form-group">
+                <label for="edit_name">Category Name:</label>
+                <input type="text" id="edit_name" name="name" required class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="edit_color">Color:</label>
+                <input type="color" id="edit_color" name="color" value="#F89B4D" class="form-input">
+            </div>
+            <div class="modal-actions">
+                <button type="submit" class="btn btn-yes">Save</button>
+                <button type="button" class="btn btn-no" onclick="closeEditCategoryModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete Category Confirmation Modal -->
+<div id="deleteCategoryModal" class="modal">
+    <div class="modal-content">
+        <h3>Delete Category?</h3>
+        <p id="deleteCategoryMessage"></p>
+        <div class="modal-actions">
+            <form id="deleteCategoryForm" method="POST" action="">
+                <button type="submit" class="btn btn-yes">Yes, Delete</button>
+                <button type="button" class="btn btn-no" onclick="closeDeleteCategoryModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function showNewCategoryForm() {
+    document.getElementById('newCategoryModal').style.display = 'flex';
+}
+
+function closeNewCategoryModal() {
+    document.getElementById('newCategoryModal').style.display = 'none';
+}
+
+function editCategory(id, name, color) {
+    document.getElementById('edit_category_id').value = id;
+    document.getElementById('edit_name').value = name;
+    document.getElementById('edit_color').value = color;
+    document.getElementById('editCategoryModal').style.display = 'flex';
+}
+
+function closeEditCategoryModal() {
+    document.getElementById('editCategoryModal').style.display = 'none';
+}
+
+function deleteCategory(id, name) {
+    const message = `Are you sure you want to delete "${name}"? All notes in this category will also be deleted.`;
+    document.getElementById('deleteCategoryMessage').textContent = message;
+    document.getElementById('deleteCategoryForm').action = `/categories/delete/${id}`;
+    document.getElementById('deleteCategoryModal').style.display = 'flex';
+}
+
+function closeDeleteCategoryModal() {
+    document.getElementById('deleteCategoryModal').style.display = 'none';
+}
+
+function scrollUp() {
+    const list = document.querySelector('.categories-list');
+    list.scrollBy({ top: -100, behavior: 'smooth' });
+}
+
+function scrollDown() {
+    const list = document.querySelector('.categories-list');
+    list.scrollBy({ top: 100, behavior: 'smooth' });
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}

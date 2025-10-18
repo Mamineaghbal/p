@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}{{ 'Edit Note' if note else 'New Note' }}{% endblock %}
+
+{% block content %}
+<div class="editor-screen fade-in">
+    <div class="editor-panel">
+        <form id="noteForm" method="POST" action="{{ url_for('notes.save_note') }}">
+            <!-- Hidden fields -->
+            <input type="hidden" name="note_id" value="{{ note.id if note else '' }}">
+            <input type="hidden" id="originalContent" value="{{ note.content if note else '' }}">
+            
+            <!-- Editor Header -->
+            <div class="editor-header">
+                <a href="{{ url_for('ui.start') }}" class="btn btn-home">🏠 Home</a>
+                <button type="button" class="btn btn-undo" onclick="undoChanges()">Undo</button>
+                <button type="button" class="btn btn-save" onclick="showSaveConfirm()">Save</button>
+                <button type="button" class="btn btn-exit" onclick="exitEditor()">Exit</button>
+            </div>
+
+            <!-- Title Field -->
+            <div class="editor-title-section">
+                <label for="title">Title:</label>
+                <input 
+                    type="text" 
+                    id="title" 
+                    name="title" 
+                    class="title-input" 
+                    value="{{ note.title if note else 'New note' }}"
+                    {% if note and note.is_locked %}disabled{% endif %}
+                >
+            </div>
+
+            <!-- Category Selector -->
+            <div class="editor-category-section">
+                <label for="category_id">Category:</label>
+                <select name="category_id" id="category_id" class="category-select" {% if note and note.is_locked %}disabled{% endif %}>
+                    {% for cat in categories %}
+                    {% if cat.name != 'All' %}
+                    <option value="{{ cat.id }}" {% if note and note.category_id == cat.id %}selected{% endif %}>
+                        {{ cat.name }}
+                    </option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Content Area -->
+            <div class="editor-content-section">
+                <textarea 
+                    id="content" 
+                    name="content" 
+                    class="content-textarea" 
+                    placeholder="Start writing your note..."
+                    {% if note and note.is_locked %}disabled{% endif %}
+                >{{ note.content if note else '' }}</textarea>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Save Confirmation Modal -->
+<div id="saveModal" class="modal">
+    <div class="modal-content">
+        <h3>Save: {{ note.title if note else 'New note' }}?</h3>
+        <div class="modal-actions">
+            <button class="btn btn-yes" onclick="saveNote()">Yes</button>
+            <button class="btn btn-no" onclick="closeSaveModal()">No</button>
+        </div>
+    </div>
+</div>
+
+<!-- Exit Confirmation Modal -->
+<div id="exitModal" class="modal">
+    <div class="modal-content">
+        <h3>Save changes?</h3>
+        <div class="modal-actions">
+            <button class="btn btn-yes" onclick="saveAndExit()">Yes</button>
+            <button class="btn btn-no" onclick="exitWithoutSaving()">No</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let hasChanges = false;
+const originalTitle = "{{ note.title if note else 'New note' }}";
+const originalContent = "{{ note.content if note else '' }}";
+
+// Track changes
+document.getElementById('title').addEventListener('input', () => hasChanges = true);
+document.getElementById('content').addEventListener('input', () => hasChanges = true);
+document.getElementById('category_id').addEventListener('change', () => hasChanges = true);
+
+function showSaveConfirm() {
+    document.getElementById('saveModal').style.display = 'flex';
+}
+
+function closeSaveModal() {
+    document.getElementById('saveModal').style.display = 'none';
+}
+
+function saveNote() {
+    document.getElementById('noteForm').submit();
+}
+
+function exitEditor() {
+    if (hasChanges) {
+        document.getElementById('exitModal').style.display = 'flex';
+    } else {
+        window.location.href = "{{ url_for('notes.list_notes') }}";
+    }
+}
+
+function saveAndExit() {
+    document.getElementById('noteForm').submit();
+}
+
+function exitWithoutSaving() {
+    window.location.href = "{{ url_for('notes.list_notes') }}";
+}
+
+function undoChanges() {
+    document.getElementById('title').value = originalTitle;
+    document.getElementById('content').value = originalContent;
+    hasChanges = false;
+}
+
+// Close modals when clicking outside
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}

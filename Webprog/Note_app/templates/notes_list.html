@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Notes - {{ current_category.name if current_category else 'All' }}{% endblock %}
+
+{% block content %}
+<div class="notes-screen fade-in">
+    <div class="notes-panel">
+        <!-- Header with Category Selector -->
+        <div class="notes-header">
+            <a href="{{ url_for('ui.start') }}" class="btn btn-home">🏠 Home</a>
+            <div class="category-selector">
+                <span class="category-label">Category:</span>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown()">
+                        {{ current_category.name if current_category else 'All' }} ▼
+                    </button>
+                    <div class="dropdown-menu" id="categoryDropdown">
+                        <a href="{{ url_for('notes.list_notes') }}" class="dropdown-item">All</a>
+                        {% for cat in categories %}
+                        {% if cat.name != 'All' %}
+                        <a href="{{ url_for('notes.list_notes', category_id=cat.id) }}" class="dropdown-item">{{ cat.name }}</a>
+                        {% endif %}
+                        {% endfor %}
+                        <hr>
+                        <a href="{{ url_for('categories.list_categories') }}" class="dropdown-item">Manage Categories</a>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-delete" onclick="deleteSelected()">Delete</button>
+        </div>
+
+        <!-- Search Bar (toggleable) -->
+        <div class="search-bar" id="searchBar" style="display: none;">
+            <form method="GET" action="{{ url_for('notes.list_notes', category_id=current_category.id if current_category else None) }}">
+                <input type="text" name="search" placeholder="Search notes..." value="{{ search_query }}" class="search-input">
+                <button type="submit" class="btn btn-search-submit">Search</button>
+                <button type="button" class="btn btn-close" onclick="closeSearch()">✕</button>
+            </form>
+        </div>
+
+        <!-- Notes List -->
+        <div class="notes-list">
+            {% if notes %}
+            {% for note in notes %}
+            <div class="note-item" data-note-id="{{ note.id }}" onclick="selectNote(this)">
+                <span class="note-title">{{ note.title }}</span>
+                {% if note.is_locked %}
+                <span class="lock-icon">🔒</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="empty-state">
+                <p>No notes yet. Click "New Note" to create one!</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="notes-actions">
+            <a href="{{ url_for('notes.new_note') }}" class="btn btn-new">New Note</a>
+            <button class="btn btn-search" onclick="toggleSearch()">Search</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let selectedNoteId = null;
+
+function toggleDropdown() {
+    document.getElementById('categoryDropdown').classList.toggle('show');
+}
+
+function toggleSearch() {
+    const searchBar = document.getElementById('searchBar');
+    searchBar.style.display = searchBar.style.display === 'none' ? 'flex' : 'none';
+}
+
+function closeSearch() {
+    document.getElementById('searchBar').style.display = 'none';
+    window.location.href = "{{ url_for('notes.list_notes', category_id=current_category.id if current_category else None) }}";
+}
+
+function selectNote(element) {
+    // Remove previous selection
+    document.querySelectorAll('.note-item').forEach(item => item.classList.remove('selected'));
+    
+    // Add selection to clicked note
+    element.classList.add('selected');
+    selectedNoteId = element.dataset.noteId;
+    
+    // Navigate to edit note
+    window.location.href = `/notes/edit/${selectedNoteId}`;
+}
+
+function deleteSelected() {
+    if (!selectedNoteId) {
+        alert('Please select a note to delete');
+        return;
+    }
+    
+    if (confirm('Are you sure you want to delete this note?')) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/notes/delete/${selectedNoteId}`;
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+
+// Close dropdown when clicking outside
+window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-toggle')) {
+        const dropdowns = document.getElementsByClassName('dropdown-menu');
+        for (let i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].classList.remove('show');
+        }
+    }
+}
+</script>
+{% endblock %}
