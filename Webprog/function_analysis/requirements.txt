@@ -1,0 +1,8 @@
+Flask==3.0.3
+sympy==1.12
+numpy==1.26.4
+scipy==1.13.0
+matplotlib==3.8.4
+plotly==5.18.0
+jinja2==3.1.4
+SQLAlchemy==2.0.30

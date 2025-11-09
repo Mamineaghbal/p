@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Educational Mode - {{ func.expression }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Educational Mode: <span class="mathjax">{{ func.expression | safe }}</span></h2>
+    <p>Step-by-step derivation with explanations.</p>
+</div>
+
+<div class="card">
+    <h3>Derivation Steps</h3>
+    {% for key, value in results.items() %}
+    <div class="result-box">
+        <h4>{{ key|replace('_', ' ')|title }}</h4>
+        <div class="mathjax">{{ value | safe }}</div>
+        <p><strong>Rule Applied:</strong> Chain Rule / Product Rule / etc.</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="card">
+    <a href="{{ url_for('analysis', func_id=func.id) }}" class="button">Back to Summary</a>
+</div>
+{% endblock %}

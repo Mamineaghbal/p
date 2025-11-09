@@ -1,0 +1,12 @@
+<nav style="padding: 1rem 0; background: rgba(0,0,0,0.3); border-bottom: 1px solid #444;">
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+        <div>
+            <a href="{{ url_for('index') }}" style="color: #00FFFF; font-weight: bold; text-decoration: none; font-size: 1.2rem;">🧮 Function Analysis</a>
+        </div>
+        <div>
+            <a href="{{ url_for('index') }}" class="button" style="margin-right: 0.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;">Home</a>
+            <!-- templates/partials/navbar.html -->
+            <a href="{{ url_for('new_function') }}" class="button secondary">New</a>
+        </div>
+    </div>
+</nav>

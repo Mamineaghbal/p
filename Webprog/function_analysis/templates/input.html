@@ -1,0 +1,30 @@
+<!-- templates/input.html -->
+{% extends "base.html" %}
+
+{% block title %}Define Function{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Add Function / Sequence</h2>
+    <form method="POST">
+        <div class="input-group">
+            <label>Definition (e.g., <code>f(x) = x^2</code> or <code>a_n = 1/n</code>)</label>
+            <input type="text" name="definition" placeholder="f(x) = sqrt(x)" required>
+        </div>
+        <div class="input-group">
+            <label>Domain (optional, e.g., <code>ℝ⁺</code>, <code>[0, ∞)</code>)</label>
+            <input type="text" name="domain" placeholder="ℝ⁺" value="ℝ">
+        </div>
+        <div class="input-group">
+            <label>Type</label>
+            <select name="type">
+                <option value="function">Function (continuous)</option>
+                <option value="sequence">Sequence (discrete)</option>
+                <option value="series">Series</option>
+            </select>
+        </div>
+        <button type="submit" class="button">Add to Graph</button>
+        <button type="button" class="button secondary" onclick="history.back()">✕ Cancel</button>
+    </form>
+</div>
+{% endblock %}

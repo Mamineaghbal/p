@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Result</title>
+    <style>
+        body { font-family: Inter; background: white; padding: 20px; }
+        .result-box { margin: 15px 0; padding: 15px; border: 1px solid #ccc; background: #f8f8f8; }
+        pre { background: #eee; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h2>Analysis: {{ func.expression }}</h2>
+    <a href="/canvas">← Back to Graph</a>
+
+    <div class="result-box">
+        <h3>Domain</h3>
+        <pre>{{ func.domain_from or 'Not specified' }} → {{ func.domain_to or 'Not specified' }}</pre>
+    </div>
+
+    <div class="result-box">
+        <h3>Type</h3>
+        <pre>{{ func.type | capitalize }}</pre>
+    </div>
+
+    <!-- In future: full analysis (derivative, integral, etc.) -->
+</body>
+</html>

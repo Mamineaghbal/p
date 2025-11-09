@@ -1,0 +1,24 @@
+<!-- templates/test_plot.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plot Test</title>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+</head>
+<body>
+    <h2>Plot Test</h2>
+    <div id="plot" style="width:600px; height:400px; border:1px solid red;"></div>
+
+    <script>
+        console.log("Plotly version:", Plotly.version);
+        Plotly.newPlot('plot', [{
+            x: [0, 1, 2],
+            y: [0, 1, 4],
+            mode: 'lines+markers',
+            type: 'scatter'
+        }], {
+            title: 'Test: f(x) = x²'
+        });
+    </script>
+</body>
+</html>

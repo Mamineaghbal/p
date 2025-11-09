@@ -1,0 +1,48 @@
+<!-- templates/analyze_selector.html -->
+{% extends "base.html" %}
+{% block title %}Analyze Function{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>🔍 Analyze a Function</h2>
+    <p>Select a function to perform symbolic analysis.</p>
+    <a href="{{ url_for('index') }}" class="button secondary">← Back to Home</a>
+</div>
+
+{% if functions %}
+<div class="card">
+    <h3>Available Functions</h3>
+    {% for func in functions %}
+    <div class="func-item">
+        <strong>{{ func.expression }}</strong> ({{ func.type }})
+        <div class="func-actions">
+            <a href="{{ url_for('analysis', func_id=func.id) }}" class="button small">🔬 Analysis</a>
+            <a href="{{ url_for('graph', func_id=func.id) }}" class="button small secondary">📊 Graph</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card">
+    <p>📭 No functions saved yet.</p>
+    <a href="{{ url_for('new_function') }}" class="button">➕ Add Your First Function</a>
+</div>
+{% endif %}
+{% endblock %}
+
+<style>
+.func-item {
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    background: #fafafa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.func-actions { display: flex; gap: 8px; }
+.button.small {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+}
+</style>

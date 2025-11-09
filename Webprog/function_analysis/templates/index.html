@@ -1,0 +1,26 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Home - Function Analysis{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Welcome to Function Analysis 🧮</h2>
+    <p>Define, analyze, and visualize mathematical functions, sequences, and series.</p>
+    
+    <a href="{{ url_for('new_function') }}" class="button">➕ Add New Function</a>
+    <a href="{{ url_for('function_list') }}" class="button secondary">📚 My Functions</a>
+    <a href="{{ url_for('canvas') }}" class="button secondary">📊 View All Graphs</a>
+    <a href="{{ url_for('analyze_selector') }}">🔍 Analyze a Function</a>
+</div>
+
+<div class="card">
+    <h3>Examples</h3>
+    <ul>
+        <li><code>f(x) = e^x + x</code></li>
+        <li><code>g(x) = sin(x)/x</code></li>
+        <li><code>a_n = (1/n)^2</code></li>
+        <li><code>∑(1/n^2)</code></li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+<!-- templates/analysis.html -->
+{% extends "base.html" %}
+{% block title %}Analysis - {{ func.expression }}{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>🧮 Symbolic Analysis</h2>
+    <p><strong>Function:</strong> <span class="mathjax">{{ func.expression | safe }}</span></p>
+    <div class="analysis-nav">
+        <a href="{{ url_for('graph', func_id=func.id) }}" class="button secondary">📊 Graph</a>
+        <a href="{{ url_for('educational', func_id=func.id) }}" class="button">📚 Step-by-Step</a>
+        <a href="{{ url_for('analyze_selector') }}" class="button secondary">← Select Another</a>
+    </div>
+</div>
+
+<!-- Analysis Results -->
+{% for key, value in results.items() %}
+<div class="analysis-section">
+    <div class="section-header collapsible" onclick="toggleSection(this)">
+        {{ key|replace('_', ' ')|title }}
+        <span class="toggle">▼</span>
+    </div>
+    <div class="section-content collapsible-content">
+        {% if value is string and value.startswith('Error') %}
+        <span class="error">{{ value }}</span>
+        {% else %}
+        <div class="mathjax">{{ value | safe }}</div>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+<script>
+function toggleSection(header) {
+    const content = header.nextElementSibling;
+    const toggle = header.querySelector('.toggle');
+    if (content.style.display === "block") {
+        content.style.display = "none";
+        toggle.textContent = "▼";
+    } else {
+        content.style.display = "block";
+        toggle.textContent = "▲";
+    }
+    MathJax.typesetPromise();
+}
+// Expand first section by default
+document.addEventListener('DOMContentLoaded', () => {
+    const first = document.querySelector('.collapsible-content');
+    if (first) {
+        first.style.display = 'block';
+        first.previousElementSibling.querySelector('.toggle').textContent = '▲';
+    }
+    MathJax.typesetPromise();
+});
+</script>
+
+<style>
+.analysis-nav { margin: 15px 0; display: flex; gap: 10px; flex-wrap: wrap; }
+.analysis-section {
+    margin: 12px 0;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+.section-header {
+    padding: 10px 15px;
+    background: #f0f8ff;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.section-content {
+    padding: 15px;
+    background: white;
+    display: none;
+}
+.error { color: #d32f2f; font-style: italic; }
+.mathjax { line-height: 1.6; }
+</style>
+{% endblock %}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Function</title>
+    <style>
+        body { font-family: Inter; background: white; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .form-group { margin: 15px 0; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select {
+            width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;
+        }
+        .btn-group {
+            display: flex; gap: 10px; margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;
+        }
+        .cancel { background: #ddd; }
+        .save { background: #32cd32; color: white; }
+    </style>
+</head>
+<body>
+    <h2>Define New Function</h2>
+
+    <!-- Add this to the <form> tag -->
+    <form method="POST" action="{{ url_for('new_function') }}">
+        <div class="form-group">
+            <label>Definition</label>
+            <input type="text" name="definition" placeholder="e.g., f(x) = x^2" required>
+        </div>
+
+        <div class="form-group">
+            <label>Type</label>
+            <select name="type">
+                <option value="function">Function</option>
+                <option value="sequence">Sequence</option>
+                <option value="series">Series</option>
+            </select>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+            <div style="flex: 1;">
+                <label>From</label>
+                <input type="text" name="domain_from" value="ℝ" placeholder="Domain">
+            </div>
+            <div style="flex: 1;">
+                <label>To</label>
+                <input type="text" name="domain_to" value="ℝ" placeholder="Codomain">
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a href="/functions" class="btn cancel">Cancel</a>
+            <button type="submit" class="btn save">✓ Save & Graph</button>
+        </div>
+    </form>
+</body>
+</html>

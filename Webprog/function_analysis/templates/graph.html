@@ -1,0 +1,70 @@
+<!-- templates/graph.html -->
+{% extends "base.html" %}
+
+{% block title %}Graph - {{ func.expression }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Graph of: <span class="mathjax">{{ func.expression | safe }}</span></h2>
+    <p><strong>Domain:</strong> {{ func.domain or "All Real Numbers" }}</p>
+</div>
+
+<div class="card">
+    <div id="plot-container" class="plot-container"></div>
+    <p style="text-align: center; margin-top: 1rem; color: #666;">
+        Use mouse to zoom and pan. Axes are scaled 1:1.
+    </p>
+</div>
+
+<div class="card">
+    <a href="{{ url_for('analysis', func_id=func.id) }}" class="button">← Back to Analysis</a>
+</div>
+
+<!-- Safe data injection -->
+<script id="plot-data" type="application/json">
+{
+  "traces": {{ plot_data | tojson }},
+  "expression": {{ func.expression | tojson }},
+  "variable": {{ func.variable | tojson }},
+  "type": {{ func.type | tojson }}
+}
+</script>
+
+<script>
+const config = JSON.parse(document.getElementById('plot-data').textContent);
+const isFunction = config.type === 'function';
+
+const plotTraces = config.traces.map(trace => ({
+    x: trace.x,
+    y: trace.y,
+    type: 'scatter',
+    mode: isFunction ? 'lines' : 'markers+lines',
+    name: config.expression,
+    marker: isFunction ? undefined : { size: 6 }
+}));
+
+const layout = {
+    title: config.expression,
+    xaxis: {
+        title: config.variable,
+        showgrid: true, zeroline: true, showline: true, mirror: true,
+        color: 'black',
+        scaleanchor: 'y',
+        scaleratio: 1
+    },
+    yaxis: {
+        title: isFunction ? 'f(' + config.variable + ')' : 'Value',
+        showgrid: true, zeroline: true, showline: true, mirror: true,
+        color: 'black'
+    },
+    plot_bgcolor: 'white',
+    paper_bgcolor: 'white',
+    margin: { t: 50, b: 60, l: 60, r: 40 }
+};
+
+Plotly.newPlot('plot-container', plotTraces, layout, {
+    responsive: true,
+    displayModeBar: true
+});
+</script>
+{% endblock %}
